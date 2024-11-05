@@ -1,14 +1,17 @@
-import Extend from "@/compents/Extend";
-import Header from "@/compents/Header";
-import MainBoard from "@/compents/MainBoard";
-import Image from "next/image";
+import Extend from "../../components/Extend";
+import Header from "../../components/Header";
+import MainBoard from "../../components/MainBoard";
 
 export default function Home() {
   return (
-    <div className="App">
+    <div className="min-h-screen bg-white">
       <Header />
-      <MainBoard />
-      <Extend />
+      <div className="pt-16">
+        <div className="max-w-3xl mx-auto px-4">
+          <MainBoard />
+          <Extend />
+        </div>
+      </div>
     </div>
   );
 }

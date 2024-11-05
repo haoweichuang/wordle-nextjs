@@ -15,16 +15,13 @@ function MainBoard() {
   const [gameStatus, setGameStatus] = useState<GameStatus>("playing");
 
   function checkGuess(guess: string) {
-    // 初始建立全灰色
     const result = new Array(5).fill("grey");
     const letterCount: { [key: string]: number } = {};
 
-    // 計算correctWord的字母以及數量
     for (let letter of correctWord) {
       letterCount[letter] = (letterCount[letter] || 0) + 1;
     }
 
-    // 第一次檢查正確位置
     for (let i = 0; i < 5; i++) {
       if (guess[i] === correctWord[i]) {
         result[i] = "green";
@@ -32,7 +29,6 @@ function MainBoard() {
       }
     }
 
-    // 第二次檢查正確字母但是是錯誤位置
     for (let i = 0; i < 5; i++) {
       if (result[i] === "grey" && letterCount[guess[i]] > 0) {
         result[i] = "yellow";
@@ -40,7 +36,6 @@ function MainBoard() {
       }
     }
 
-    // 更新使用過的字母以利keyboard變色顯示
     const newUsedLetters = { ...usedLetters };
     for (let i = 0; i < 5; i++) {
       if (!newUsedLetters[guess[i]] || result[i] === "green") {
@@ -56,29 +51,25 @@ function MainBoard() {
     (key: string) => {
       if (gameStatus !== "playing") return;
 
-      setCurrentGuess((prev) => {
-        let newGuess = prev;
-        if (key === "Enter") {
-          if (prev.length === 5) {
-            const newGuesses = [...guesses, prev];
-            setGuesses(newGuesses);
-            const result = checkGuess(prev);
-            setGuessResults([...guessResults, result]);
+      if (key === "Enter") {
+        if (currentGuess.length === 5) {
+          const newGuesses = [...guesses, currentGuess];
+          setGuesses(newGuesses);
+          const result = checkGuess(currentGuess);
+          setGuessResults([...guessResults, result]);
 
-            if (prev === correctWord) {
-              setGameStatus("won");
-            } else if (newGuesses.length === 6) {
-              setGameStatus("lost");
-            }
-            newGuess = "";
+          if (currentGuess === correctWord) {
+            setGameStatus("won");
+          } else if (newGuesses.length === 6) {
+            setGameStatus("lost");
           }
-        } else if (key === "Backspace") {
-          newGuess = prev.slice(0, -1);
-        } else if (/^[A-Za-z]$/.test(key) && prev.length < 5) {
-          newGuess = prev + key.toUpperCase();
+          setCurrentGuess("");
         }
-        return newGuess;
-      });
+      } else if (key === "Backspace") {
+        setCurrentGuess(prev => prev.slice(0, -1));
+      } else if (/^[A-Za-z]$/.test(key) && currentGuess.length < 5) {
+        setCurrentGuess(prev => prev + key.toUpperCase());
+      }
     },
     [currentGuess, guesses, guessResults, correctWord, gameStatus]
   );
@@ -96,7 +87,7 @@ function MainBoard() {
   }, [handleKeyInput]);
 
   return (
-    <main className="main">
+    <div className="flex flex-col items-center gap-8 pt-8">
       <GameBoard
         currentGuess={currentGuess}
         guesses={guesses}
@@ -104,12 +95,12 @@ function MainBoard() {
       />
       <KeyBoard onKeyPress={handleKeyInput} usedLetters={usedLetters} />
       {gameStatus !== "playing" && (
-        <div>
+        <div className="mt-8 p-4 rounded-lg bg-gray-50 text-lg font-bold">
           {gameStatus === "won" ? "恭喜你猜對了！" : "搜哩，你沒有猜對！"}
-          正確的是：{correctWord}
+          <div className="mt-2">正確的是：{correctWord}</div>
         </div>
       )}
-    </main>
+    </div>
   );
 }
 

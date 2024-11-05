@@ -1,0 +1,130 @@
+.App {
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f0f0f0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.setting {
+  display: flex;
+  gap: 1rem;
+}
+
+.color-picker {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.game-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.board-main {
+  display: grid;
+  grid-gap: 5px;
+}
+
+.board-row {
+  display: flex;
+  gap: 5px;
+}
+
+.board-cell {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.keyboard {
+  margin-bottom: 2rem;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.keyboard-key {
+  margin: 0 2px;
+  padding: 10px;
+  font-size: 1rem;
+  min-width: 30px;
+  background-color: #d3d6da;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.extend {
+  margin-top: 2rem;
+}
+
+/* 在現有的 CSS 中添加以下樣式 */
+
+.board-cell.green {
+  background-color: #6aaa64;
+  color: white;
+}
+
+.board-cell.yellow {
+  background-color: #c9b458;
+  color: white;
+}
+
+.board-cell.grey {
+  background-color: #787c7e;
+  color: white;
+}
+
+.keyboard-key.green {
+  background-color: #6aaa64;
+  color: white;
+}
+
+.keyboard-key.yellow {
+  background-color: #c9b458;
+  color: white;
+}
+
+.keyboard-key.grey {
+  background-color: #787c7e;
+  color: white;
+}
+
+.keyboard-key:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
