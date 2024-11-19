@@ -66,9 +66,9 @@ function MainBoard() {
           setCurrentGuess("");
         }
       } else if (key === "Backspace") {
-        setCurrentGuess(prev => prev.slice(0, -1));
+        setCurrentGuess((prev) => prev.slice(0, -1));
       } else if (/^[A-Za-z]$/.test(key) && currentGuess.length < 5) {
-        setCurrentGuess(prev => prev + key.toUpperCase());
+        setCurrentGuess((prev) => prev + key.toUpperCase());
       }
     },
     [currentGuess, guesses, guessResults, correctWord, gameStatus]
@@ -87,19 +87,19 @@ function MainBoard() {
   }, [handleKeyInput]);
 
   return (
-    <div className="flex flex-col items-center gap-8 pt-8">
+    <div className="flex flex-col items-center gap-4 pt-4">
       <GameBoard
         currentGuess={currentGuess}
         guesses={guesses}
         guessResults={guessResults}
       />
-      <KeyBoard onKeyPress={handleKeyInput} usedLetters={usedLetters} />
       {gameStatus !== "playing" && (
-        <div className="mt-8 p-4 rounded-lg bg-gray-50 text-lg font-bold">
+        <div className="mt-2 p-2 rounded-lg bg-gray-50 text-lg font-bold">
           {gameStatus === "won" ? "恭喜你猜對了！" : "搜哩，你沒有猜對！"}
           <div className="mt-2">正確的是：{correctWord}</div>
         </div>
       )}
+      <KeyBoard onKeyPress={handleKeyInput} usedLetters={usedLetters} />
     </div>
   );
 }
