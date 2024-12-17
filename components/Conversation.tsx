@@ -6,7 +6,7 @@ function Conversation() {
       <div className="conversation-head flex items-center justify-center  h-[20px]">
         Conversation
       </div>
-      <div className="conversation-body flex-1 rounded-lg bg-gray-100 m-10"></div>
+      <div className="conversation-body flex-1 rounded-lg bg-gray-0 m-10"></div>
     </div>
   );
 }
