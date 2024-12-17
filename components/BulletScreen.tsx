@@ -103,7 +103,7 @@ const BulletScreen = () => {
   return (
     <div className="bullet-screen-container w-full mt-8">
       <div
-        className="bullet-screen h-[20vh] bg-gray-100/50 backdrop-blur-sm rounded-lg m-5 relative overflow-hidden"
+        className="bullet-screen h-[20vh] bg-gray-100/50 backdrop-blur-sm rounded-lg m-1 relative overflow-hidden"
         ref={bulletScreenRef}
       >
         <div className="show"></div>
